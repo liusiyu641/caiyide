@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.caiyide.primary.mapper.BOrderMapper">
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        order_no AS orderNo, user_id AS userId, product_id AS productId, product_sum AS productSum, order_total AS orderTotal, product_All_price AS productAllPrice, order_type AS orderType, order_time AS orderTime
+    </sql>
+
+    <select id="getById" resultType="com.caiyide.primary.entity.BOrder">
+        select <include refid="Base_Column_List"/> from b_order where id = #{id}
+    </select>
+
+    <select id="getPageList" resultType="com.caiyide.primary.entity.BOrder">
+        select <include refid="Base_Column_List"/> from b_order
+    </select>
+
+</mapper>

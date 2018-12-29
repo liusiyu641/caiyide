@@ -1,0 +1,96 @@
+package ${package.Controller};
+
+
+import com.caiyide.primary.common.vo.ResponseResult;
+import ${package.Entity}.${entity};
+import ${package.Service}.${table.serviceName};
+import com.caiyide.primary.web.param.${entity}Param;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+
+#if(${restControllerStyle})
+import org.springframework.web.bind.annotation.RestController;
+#else
+#end
+#if(${superControllerClassPackage})
+import ${superControllerClassPackage};
+#end
+
+/**
+ * <p>
+ * $!{table.comment} 前端控制器
+ * </p>
+ *
+ * @author ${author}
+ * @date ${date}
+ */
+#if(${restControllerStyle})
+@RestController
+#else
+@RestController
+#end
+@RequestMapping("/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
+@Api(description = "$!{table.comment} API")
+#if(${superControllerClass})
+public class ${table.controllerName} extends ${superControllerClass} {
+#else
+public class ${table.controllerName} {
+#end
+
+    private static final Logger logger = LoggerFactory.getLogger(${table.controllerName}.class);
+
+    @Autowired
+    private ${table.serviceName} ${table.serviceName.substring(0, 1).toLowerCase()}${table.serviceName.substring(1)};
+
+    /**
+    * 添加$!{table.comment}
+    */
+    @PostMapping("/add")
+    @ApiOperation(value = "添加",notes = "添加",response = ResponseResult.class)
+    public Object add${entity}(@RequestBody ${entity} ${entity.substring(0, 1).toLowerCase()}${entity.substring(1)}) throws Exception{
+##        ${entity.substring(0, 1).toLowerCase()}${entity.substring(1)}.setId(UUIDUtil.getUUID());
+        boolean flag = ${entity.substring(0, 1).toLowerCase()}${entity.substring(1)}Service.insert(${entity.substring(0, 1).toLowerCase()}${entity.substring(1)});
+        return ResponseResult.handle(flag);
+    }
+
+    /**
+    * 修改$!{table.comment}
+    */
+    @PostMapping("/update")
+    @ApiOperation(value = "修改",notes = "修改",response = ResponseResult.class)
+    public Object update${entity}(@RequestBody ${entity} ${entity.substring(0, 1).toLowerCase()}${entity.substring(1)}) throws Exception{
+        boolean flag = ${entity.substring(0, 1).toLowerCase()}${entity.substring(1)}Service.updateById(${entity.substring(0, 1).toLowerCase()}${entity.substring(1)});
+        return ResponseResult.handle(flag);
+    }
+
+    /**
+    * 删除$!{table.comment}
+    */
+    @PostMapping("/delete")
+    @ApiOperation(value = "删除",notes = "删除",response = ResponseResult.class)
+    public Object delete${entity}(@RequestBody IdParam idParam) throws Exception{
+        boolean flag = ${entity.substring(0, 1).toLowerCase()}${entity.substring(1)}Service.deleteById(idParam.getId());
+        return ResponseResult.handle(flag);
+    }
+
+    /**
+    * 获取$!{table.comment}
+    */
+    @PostMapping("/info")
+    @ApiOperation(value = "查看",notes = "查看",response = ResponseResult.class)
+    public Object get${entity}(@RequestBody IdParam idParam) throws Exception{
+        return ${entity.substring(0, 1).toLowerCase()}${entity.substring(1)}Service.getById(idParam.getId());
+    }
+
+    /**
+    * $!{table.comment}分页列表
+    */
+    @PostMapping("/getPageList")
+    @ApiOperation(value = "获取分页列表",notes = "获取分页列表",response = ${entity}.class)
+    public Object get${entity}PageList(@RequestBody(required = false) ${entity}Param ${entity.substring(0, 1).toLowerCase()}${entity.substring(1)}Param) throws Exception{
+        return ${entity.substring(0, 1).toLowerCase()}${entity.substring(1)}Service.getPageList(${entity.substring(0, 1).toLowerCase()}${entity.substring(1)}Param);
+    }
+}

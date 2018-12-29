@@ -1,0 +1,15 @@
+package com.caiyide.primary.web.param;
+
+import com.caiyide.primary.common.vo.QueryParam;
+
+/**
+ * <p>
+ * $!{table.comment} 查询参数
+ * </p>
+ *
+ * @author ${author}
+ * @date ${date}
+ */
+public class ${entity}Param extends QueryParam {
+
+}

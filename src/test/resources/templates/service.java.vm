@@ -1,0 +1,20 @@
+package ${package.Service};
+
+import ${package.Entity}.${entity};
+import ${superServiceClassPackage};
+import com.caiyide.primary.web.param.${entity}Param;
+
+/**
+ * <p>
+ * $!{table.comment} 服务类
+ * </p>
+ *
+ * @author ${author}
+ * @date ${date}
+ */
+public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
+
+    ${entity} getById(String id);
+
+    Paging getPageList(${entity}Param ${entity.substring(0, 1).toLowerCase()}${entity.substring(1)}Param);
+}
