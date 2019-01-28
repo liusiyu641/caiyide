@@ -4,15 +4,23 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        Advert_id AS AdvertId, Advert_image AS AdvertImage, Advert_type AS AdvertType, create_time AS createTime
+        Advert_id AS AdvertId, Advert_image AS AdvertImage, Advert_type AS AdvertType, create_time AS createTime,Advert_state as AdvertState
     </sql>
 
     <select id="getById" resultType="com.caiyide.primary.entity.BAdvertisement">
-        select <include refid="Base_Column_List"/> from b_advertisement where id = #{id}
+        select <include refid="Base_Column_List"/> from b_advertisement where Advert_id = #{id}
     </select>
 
     <select id="getPageList" resultType="com.caiyide.primary.entity.BAdvertisement">
         select <include refid="Base_Column_List"/> from b_advertisement
     </select>
-
+    <select id="getAdvert"  resultType="com.caiyide.primary.web.vo.AdvertVo">
+        select Advert_id AS AdvertId, Advert_image AS AdvertImage from  b_advertisement
+        <where>
+            <if test="AdvertType!=null and AdvertType!=''">
+                Advert_type=#{AdvertType}
+            </if>
+            and Advert_state = 1
+        </where>
+    </select>
 </mapper>

@@ -6,13 +6,44 @@
     <sql id="Base_Column_List">
         product_id AS productId, product_name AS productName, product_image AS productImage, product_price AS productPrice, product_total AS productTotal, product_type AS productType, product_creater AS productCreater, create_time AS createTime
     </sql>
-
+     <select id="getByUserId" parameterType="java.lang.String" resultType="java.lang.Integer">
+           select  count(*) from b_product where product_creater=#{productCreater}
+     </select>
     <select id="getById" resultType="com.caiyide.primary.entity.BProduct">
-        select <include refid="Base_Column_List"/> from b_product where id = #{id}
+        select <include refid="Base_Column_List"/> from b_product where product_id = #{productId}
     </select>
 
-    <select id="getPageList" resultType="com.caiyide.primary.entity.BProduct">
-        select <include refid="Base_Column_List"/> from b_product
+    <select id="getPageList" resultType="com.caiyide.primary.web.vo.ProductPageVo">
+        select
+         product_id AS productId,
+         product_name AS productName,
+         product_image AS productImage,
+         product_price AS productPrice
+        from b_product where
+        product_creater=#{productCreater}
     </select>
-
+    <update id="ChangeInventory" parameterType="com.caiyide.primary.web.vo.ProductUpVo">
+        update b_product set  product_total = #{productTotal} where product_id = #{productId}
+    </update>
+    <!--查询前两条数据-->
+    <select id="productList" resultType="com.caiyide.primary.entity.BProduct">
+        select <include refid="Base_Column_List"/> from  b_product where product_creater=#{productCreater} limit 3
+    </select>
+    <select id="getByProductName" resultType="com.caiyide.primary.web.vo.getByProductNameVo">
+     SELECT
+        r.product_id AS productId,
+        r.product_name AS productName,
+        r.product_image AS productImage,
+        r.product_price AS productPrice,
+        b.user_name AS userName,
+        b.user_id AS userId
+        FROM
+        b_product r
+        left join b_user b on r.product_creater=b.user_id
+        <where>
+         <if test="productName!=null and productName!=''">
+          and r.product_name LIKE CONCAT(CONCAT('%', #{productName}), '%')
+         </if>
+     </where>
+    </select>
 </mapper>

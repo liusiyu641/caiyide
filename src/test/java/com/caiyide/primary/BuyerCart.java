@@ -1,8 +1,12 @@
 package com.caiyide.primary;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.Test;
 
 import java.io.Serializable;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,5 +89,8 @@ public class BuyerCart implements Serializable {
     public double getTotalPrice(){
         return getProductPrice() + getFee();
     }
+
+
+
 
 }

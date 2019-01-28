@@ -8,7 +8,7 @@
     </sql>
 
     <select id="getById" resultType="com.caiyide.primary.entity.BCollection">
-        select <include refid="Base_Column_List"/> from b_collection where id = #{id}
+        select <include refid="Base_Column_List"/> from b_collection where collect_id = #{id}
     </select>
 
     <select id="getPageList" resultType="com.caiyide.primary.entity.BCollection">

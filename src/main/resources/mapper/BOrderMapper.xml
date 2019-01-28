@@ -4,15 +4,18 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        order_no AS orderNo, user_id AS userId, product_id AS productId, product_sum AS productSum, order_total AS orderTotal, product_All_price AS productAllPrice, order_type AS orderType, order_time AS orderTime
+        order_no AS orderNo, user_id AS userId, product_id AS productId, product_sum AS productSum, order_total AS orderTotal, product_All_price AS productAllPrice, order_type AS orderType, order_time AS orderTime,mark
     </sql>
 
     <select id="getById" resultType="com.caiyide.primary.entity.BOrder">
-        select <include refid="Base_Column_List"/> from b_order where id = #{id}
+        select <include refid="Base_Column_List"/> from b_order where order_no = #{id}
     </select>
 
     <select id="getPageList" resultType="com.caiyide.primary.entity.BOrder">
         select <include refid="Base_Column_List"/> from b_order
     </select>
-
+    <insert id="createOrder"  parameterType="com.caiyide.primary.entity.BOrder">
+        insert into b_order (order_no , user_id , product_id , product_sum , order_total , product_All_price , order_type , order_time,mark)
+        value (#{orderNo},#{userId},#{productId},#{productSum},#{orderTotal},#{productAllPrice},#{orderType},#{orderTime},#{mark})
+    </insert>
 </mapper>

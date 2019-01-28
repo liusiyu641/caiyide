@@ -6,6 +6,6 @@ package com.caiyide.primary.util;
  */
 public class OrderUtil {
     public static String random() {
-        return "" + System.currentTimeMillis() + (long) (java.lang.Math.random() * 10000000L);
+        return "" + System.currentTimeMillis() + (long) (Math.random() * 10000000L);
     }
 }

@@ -4,7 +4,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        user_id AS userId, user_name AS userName, phone, password, user_type AS userType, sex, weixin_code AS weixinCode, head_portrait AS headPortrait, create_time AS createTime, Lastlogin_time AS LastloginTime
+        user_id AS userId, user_name AS userName, phone, password, user_type AS userType, sex, weixin_code AS weixinCode, head_portrait AS headPortrait, address, create_time AS createTime, Lastlogin_time AS LastloginTime
     </sql>
 
     <select id="getById" resultType="com.caiyide.primary.entity.BUser">
@@ -14,21 +14,75 @@
         select <include refid="Base_Column_List"/> from b_user where weixin_code =#{weixinCode}
     </select>
 
-    <select id="getPageList" resultType="com.caiyide.primary.entity.BUser">
-        select <include refid="Base_Column_List"/> from b_user
+    <select id="getPageList" resultType="com.caiyide.primary.web.vo.getUserPageListVo">
+        SELECT
+        b.user_id AS userId,
+        b.user_name AS userName ,
+        b.head_portrait AS headPortrait,
+        b.address AS address,
+        a.product_type AS productType
+        from
+        b_product a
+        LEFT JOIN b_user b ON b.user_id = a.product_creater
+        <where>
+            b.user_type=2
+            <if test="productType !=null and productType!=''">
+               and a.product_type = #{productType}
+            </if>
+        </where>
+        group by userId
     </select>
-    <select id="weiXinCodeByUserId" parameterType="java.lang.String" resultType="java.lang.String">
-        select  user_id AS userId from  b_user where weixin_code =#{weixinCode}
+    <select id="searchUserByweixinCode"  resultType="java.lang.String">
+        select  user_id AS userId from  b_user
+        where
+        weixin_code =#{weixinCode}
     </select>
-    <insert id="addUser" parameterType="com.caiyide.primary.web.vo.AddUserVo">
+    <select id="searchUserByphone"  resultType="com.caiyide.primary.entity.BUser">
+        select  <include refid="Base_Column_List"/>   from  b_user
+        where
+        phone =#{phone}
+    </select>
+
+    <insert id="addUserByweixin" parameterType="com.caiyide.primary.web.vo.AddUserVo">
     INSERT INTO b_user ( user_id, weixin_code, create_time, Lastlogin_time )
     VALUE
 	(#{userId},#{weixinCode},Now(),Now())
     </insert>
+    <!--短信登陆-->
+    <insert id="addUserByphone" parameterType="com.caiyide.primary.web.vo.AddUserPhoneVo">
+    INSERT INTO b_user (user_id,phone,create_time,Lastlogin_time,user_type)
+    VALUE
+	(#{userId},#{phone},Now(),Now(),1)
+    </insert>
+
     <update id="updateLastLoginDate">
         update b_user set Lastlogin_time = now() where user_id = #{userId}
     </update>
     <update id="updateUserInfo">
-        update b_user set  user_name =#{userName},phone =#{phone},user_type=#{userType},sex=#{sex},head_portrait=#{headPortrait} where user_id = #{userId}
+        update b_user set  user_name =#{userName},phone =#{phone},user_type=#{userType},sex=#{sex},head_portrait=#{headPortrait},address=#{address} where user_id = #{userId}
     </update>
+
+    <select id="UserList"  resultType="com.caiyide.primary.entity.BUser">
+        select <include refid="Base_Column_List"/> from b_user where user_type=2
+    </select>
+
+    <select id="getByuserId" resultType="com.caiyide.primary.web.vo.ShopDetail">
+        SELECT
+        a.user_name as userName,
+        a.phone as phone,
+        a.head_portrait as headPortrait,
+        a.address as address
+        FROM b_user a
+        WHERE a.user_id =#{singleParma}
+    </select>
+
+    <select id="getByProducter" resultType="com.caiyide.primary.web.vo.ShopDetail">
+        SELECT
+        a.user_name as userName,
+        a.phone as phone,
+        a.head_portrait AS headPortrait,
+        a.address as address
+        FROM b_user a
+        WHERE a.user_id =#{productCreater}
+    </select>
 </mapper>
