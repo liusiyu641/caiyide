@@ -1,5 +1,6 @@
 package com.caiyide.primary.web.param;
 
+
 import com.caiyide.primary.common.vo.QueryParam;
 
 /**

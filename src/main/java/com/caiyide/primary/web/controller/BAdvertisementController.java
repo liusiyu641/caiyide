@@ -7,6 +7,7 @@ import com.caiyide.primary.entity.BAdvertisement;
 import com.caiyide.primary.service.BAdvertisementService;
 import com.caiyide.primary.util.IdParam;
 import com.caiyide.primary.web.param.BAdvertisementParam;
+import com.caiyide.primary.web.vo.AdvertVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -72,6 +73,14 @@ public class BAdvertisementController extends BaseController {
     @ApiOperation(value = "查看",notes = "查看",response = ResponseResult.class)
     public Object getBAdvertisement(@RequestBody IdParam idParam) throws Exception{
         return bAdvertisementService.getById(idParam.getId());
+    }
+    /**
+     * 获取轮播图
+     */
+    @PostMapping("/getAdvert")
+    @ApiOperation(value = "获取轮播图",notes = "获取轮播图",response = AdvertVo.class)
+    public Object getAdvert(Integer AdvertType, Integer AdvertState) throws Exception{
+        return bAdvertisementService.getAdvert(AdvertType,AdvertState  );
     }
 
     /**

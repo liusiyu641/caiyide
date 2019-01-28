@@ -1,8 +1,10 @@
 package com.caiyide.primary.service;
 
-import com.caiyide.primary.common.vo.Paging;
-import com.caiyide.primary.entity.BOrder;
+
 import com.baomidou.mybatisplus.service.IService;
+import com.caiyide.primary.common.vo.Paging;
+import com.caiyide.primary.common.vo.ResponseResult;
+import com.caiyide.primary.entity.BOrder;
 import com.caiyide.primary.web.param.BOrderParam;
 
 /**
@@ -18,4 +20,6 @@ public interface BOrderService extends IService<BOrder> {
     BOrder getById(String id);
 
     Paging getPageList(BOrderParam bOrderParam);
+
+    ResponseResult createOrder(BOrder bOrder);
 }

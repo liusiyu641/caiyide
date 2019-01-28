@@ -2,11 +2,11 @@ package com.caiyide.primary.common.aop;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.caiyide.primary.util.AnsiUtil;
 import com.caiyide.primary.common.constant.ResponseCode;
 import com.caiyide.primary.common.util.DateUtil;
 import com.caiyide.primary.common.util.IpUtil;
 import com.caiyide.primary.common.vo.ResponseResult;
+import com.caiyide.primary.util.AnsiUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
@@ -46,7 +46,7 @@ public class ResponseResultAop {
     /**
      * 切点
      */
-    private static final String POINTCUT = "execution(public * primary.zjxdqh.mms.web.controller..*.*(..))";
+    private static final String POINTCUT = "execution(public * com.caiyide.primary.web.controller..*.*(..))";
     /**
      * 默认的请求内容类型,表单提交
      **/
@@ -105,7 +105,7 @@ public class ResponseResultAop {
             // 设置请求参数
             Object requestParamJson = getRequestParamJsonString(joinPoint, request, requestMethod, contentType, isRequestBody);
             map.put("param",requestParamJson);
-            map.put("time",DateUtil.getYYYYMMDDHHMMSS(new Date()));
+            map.put("time", DateUtil.getYYYYMMDDHHMMSS(new Date()));
 
             logger.info( AnsiUtil.getAnsi(Ansi.Color.GREEN,"requestInfo:"+JSON.toJSONString(map)));
 
@@ -126,7 +126,7 @@ public class ResponseResultAop {
                     //responseResult = new ResponseResult(ResponseCode.SUCCESS,String.valueOf(result));
                 }else if (result instanceof ModelAndView){
                 }else if (!(result instanceof ResponseResult)) {
-                    responseResult = new ResponseResult(ResponseCode.SUCCESS,"操作成功", result);
+                    responseResult = new ResponseResult( ResponseCode.SUCCESS,"操作成功", result);
                 }
             }else{
                 responseResult = new ResponseResult(ResponseCode.NOT_RESULT,"没有数据", result);

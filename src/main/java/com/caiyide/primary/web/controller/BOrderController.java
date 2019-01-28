@@ -41,9 +41,8 @@ public class BOrderController extends BaseController {
     */
     @PostMapping("/add")
     @ApiOperation(value = "添加",notes = "添加",response = ResponseResult.class)
-    public Object addBOrder(@RequestBody BOrder bOrder) throws Exception{
-        boolean flag = bOrderService.insert(bOrder);
-        return ResponseResult.handle(flag);
+    public ResponseResult addBOrder(@RequestBody BOrder bOrder) throws Exception{
+        return bOrderService.createOrder( bOrder );
     }
 
     /**

@@ -1,8 +1,9 @@
 package com.caiyide.primary.mapper;
 
-import com.baomidou.mybatisplus.plugins.Page;
-import com.caiyide.primary.entity.BCollection;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.plugins.Page;
+
+import com.caiyide.primary.entity.BCollection;
 import com.caiyide.primary.web.param.BCollectionParam;
 import org.springframework.stereotype.Repository;
 

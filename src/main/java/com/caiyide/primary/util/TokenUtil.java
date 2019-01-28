@@ -11,7 +11,7 @@ public class TokenUtil {
      * @return
      */
     public static String generateXAuthToken(){
-        String token = "x-auth-token:" + UUIDUtil.getUUID();
+        String token = UUIDUtil.getUUID();
         return token;
     }
 
@@ -20,7 +20,7 @@ public class TokenUtil {
      * @return
      */
     public static String generateFirstLoginRestPwdToken(){
-        String token = "first-login-rest-pwd-token:" + UUIDUtil.getUUID();
+        String token =  UUIDUtil.getUUID();
         return token;
     }
 

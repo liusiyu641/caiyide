@@ -1,8 +1,10 @@
 package com.caiyide.primary.service;
 
+
+import com.baomidou.mybatisplus.service.IService;
 import com.caiyide.primary.common.vo.Paging;
 import com.caiyide.primary.entity.BProduct;
-import com.baomidou.mybatisplus.service.IService;
+import com.caiyide.primary.web.param.BProductNameParam;
 import com.caiyide.primary.web.param.BProductParam;
 
 /**
@@ -15,8 +17,9 @@ import com.caiyide.primary.web.param.BProductParam;
  */
 public interface BProductService extends IService<BProduct> {
 
-    BProduct getById(String id);
-
+    BProduct getById(Integer id);
 
     Paging getPageList(BProductParam bProductParam);
+
+    Paging getByProductName(BProductNameParam bProductNameParam);
 }

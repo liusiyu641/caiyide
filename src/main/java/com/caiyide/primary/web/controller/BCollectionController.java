@@ -1,6 +1,7 @@
 package com.caiyide.primary.web.controller;
 
 
+
 import com.caiyide.primary.common.vo.ResponseResult;
 import com.caiyide.primary.common.web.controller.BaseController;
 import com.caiyide.primary.entity.BCollection;

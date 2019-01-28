@@ -1,6 +1,5 @@
 package com.caiyide.primary.service.impl;
 
-import com.alibaba.druid.sql.visitor.functions.If;
 import com.caiyide.primary.common.constant.CommonConstant;
 import com.caiyide.primary.common.constant.ResponseCode;
 import com.caiyide.primary.common.util.LoginUtil;
@@ -11,7 +10,6 @@ import com.caiyide.primary.util.TokenUtil;
 import com.caiyide.primary.util.UUIDUtil;
 import com.caiyide.primary.web.vo.AddUserVo;
 import com.caiyide.primary.web.vo.LoginUserVo;
-import com.caiyide.primary.web.vo.UpdateUserVo;
 import com.caiyide.primary.web.vo.WeChatSession;
 import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
@@ -75,7 +73,7 @@ public class WeChatLogin extends ActionSupport {
             //查询是否存在用户
             LoginUserVo loginUserVo =new LoginUserVo();
 
-            BUser  bUser= bUserMapper.getByweiXinCode( openid );
+            BUser bUser= bUserMapper.getByweiXinCode( openid );
             // 将sysUser的属性复制到loginSysUserVo对象中
             if (bUser!=null) {
                 BeanUtils.copyProperties( bUser, loginUserVo );
@@ -84,11 +82,11 @@ public class WeChatLogin extends ActionSupport {
                 AddUserVo addUserVo =new AddUserVo();
                 addUserVo.setWeixinCode( openid );
                 addUserVo.setUserId( UUIDUtil.getUUID());
-                bUserMapper.addUser( addUserVo );
+                bUserMapper.addUserByweixin( addUserVo );
                 //存入redis
                 String firstLoginRestPwdToken = TokenUtil.generateFirstLoginRestPwdToken();
                 Map<String,Object> map = new HashMap<>();
-                map.put(CommonConstant.X_AUTH_TOKEN,firstLoginRestPwdToken);
+                map.put( CommonConstant.X_AUTH_TOKEN,firstLoginRestPwdToken);
                 redisTemplate.opsForValue().set(firstLoginRestPwdToken, loginUserVo,10,TimeUnit.MINUTES);
                 return new ResponseResult( ResponseCode.NOT_INFO_PERFECT,"第一次登录，请选择商家或者批发商",map);
             }
@@ -112,7 +110,7 @@ public class WeChatLogin extends ActionSupport {
             ResponseResult responseResult = new ResponseResult();
             responseResult.setCode(200);
             responseResult.setMsg("登录成功");
-                responseResult.setData(map);
+            responseResult.setData(map);
             return responseResult;
         }
         return null;

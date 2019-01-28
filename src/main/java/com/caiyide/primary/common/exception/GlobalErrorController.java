@@ -1,7 +1,7 @@
 package com.caiyide.primary.common.exception;
 
-import com.caiyide.primary.common.vo.ResponseResult;
 import com.caiyide.primary.common.constant.ResponseCode;
+import com.caiyide.primary.common.vo.ResponseResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.web.ErrorController;
@@ -25,7 +25,7 @@ public class GlobalErrorController implements ErrorController {
     @RequestMapping(ERROR_PATH)
     public ResponseResult handleError(){
         logger.error("4004");
-        return new ResponseResult(ResponseCode.NOT_FOUND,"你请求的路径不存在");
+        return new ResponseResult( ResponseCode.NOT_FOUND,"你请求的路径不存在");
     }
 
     @Override

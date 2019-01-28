@@ -1,19 +1,19 @@
 package com.caiyide.primary.entity;
 
 import com.baomidou.mybatisplus.enums.IdType;
-import java.math.BigDecimal;
+
 import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
-import com.caiyide.primary.common.entity.BaseEntity;
+
 
 import java.io.Serializable;
 
+import com.caiyide.primary.common.entity.BaseEntity;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 
 
 /**
@@ -51,7 +51,7 @@ public class BProduct extends BaseEntity {
      */
 	@ApiModelProperty("商品单价")
 	@TableField("product_price")
-	private BigDecimal productPrice;
+	private double productPrice;
     /**
      * 商品总量
      */
@@ -76,7 +76,34 @@ public class BProduct extends BaseEntity {
 	@ApiModelProperty("创建时间")
 	@TableField("create_time")
 	private Date createTime;
+	public BProduct() {// 无参构造
+		super();
+	}
 
+	public BProduct(Integer productId, String productName, String productImage, double productPrice, Integer productTotal, Integer productType, String productCreater, Date createTime) {
+		this.productId = productId;
+		this.productName = productName;
+		this.productImage = productImage;
+		this.productPrice = productPrice;
+		this.productTotal = productTotal;
+		this.productType = productType;
+		this.productCreater = productCreater;
+		this.createTime = createTime;
+	}
+
+	@Override
+	public String toString() {
+		return "BProduct{" +
+				"产品ID=" + productId +
+				", 产品名字='" + productName + '\'' +
+				", 产品图片='" + productImage + '\'' +
+				", 单价=" + productPrice +
+				", 库存=" + productTotal +
+				", 类型=" + productType +
+				", 创建人='" + productCreater + '\'' +
+				", 创建时间=" + createTime +
+				'}';
+	}
 
 	public Integer getProductId() {
 		return productId;
@@ -102,11 +129,11 @@ public class BProduct extends BaseEntity {
 		this.productImage = productImage;
 	}
 
-	public BigDecimal getProductPrice() {
+	public double getProductPrice() {
 		return productPrice;
 	}
 
-	public void setProductPrice(BigDecimal productPrice) {
+	public void setProductPrice(double productPrice) {
 		this.productPrice = productPrice;
 	}
 
@@ -148,8 +175,14 @@ public class BProduct extends BaseEntity {
         return this.productId;
 	}
 
+
 	@Override
-	public String toString() {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+	public boolean equals(Object obj) {
+		BProduct ob= (BProduct) obj;
+		if(ob.getProductId()== this.productId){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }

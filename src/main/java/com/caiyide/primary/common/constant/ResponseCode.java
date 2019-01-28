@@ -84,4 +84,8 @@ public interface ResponseCode {
      * 为完善资料
      */
     Integer NOT_INFO_PERFECT = 402;
+    /**
+     * 第一次登陆
+     */
+    Integer FIRST_LOGIN=403;
 }

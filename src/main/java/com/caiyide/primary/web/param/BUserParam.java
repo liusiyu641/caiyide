@@ -1,7 +1,7 @@
 package com.caiyide.primary.web.param;
 
+
 import com.caiyide.primary.common.vo.QueryParam;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Date;
@@ -16,5 +16,14 @@ import java.util.Date;
  */
 
 public class BUserParam extends QueryParam {
+    @ApiModelProperty("商品类型")
+    private  Integer productType;
 
+    public Integer getProductType() {
+        return productType;
+    }
+
+    public void setProductType(Integer productType) {
+        this.productType = productType;
+    }
 }

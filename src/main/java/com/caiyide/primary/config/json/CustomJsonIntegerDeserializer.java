@@ -1,10 +1,11 @@
 package com.caiyide.primary.config.json;
 
+import com.caiyide.primary.config.converter.StringToIntegerUtil;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.caiyide.primary.config.converter.StringToIntegerUtil;
+
 
 import java.io.IOException;
 

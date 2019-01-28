@@ -1,9 +1,9 @@
 package com.caiyide.primary.common.exception;
 
 import com.alibaba.fastjson.JSON;
+import com.caiyide.primary.common.constant.ResponseCode;
 import com.caiyide.primary.common.vo.ResponseResult;
 import com.caiyide.primary.util.AnsiUtil;
-import com.caiyide.primary.common.constant.ResponseCode;
 import org.fusesource.jansi.Ansi;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,7 +46,7 @@ public class GlobalExceptionHandler {
         logger.error("handleMethodArgumentNotValidException");
         logger.error("fieldErrors"+list);
         logger.error("fieldErrors"+ JSON.toJSONString(list));
-        return new ResponseResult(ResponseCode.PARAMETER_EXCEPTION,"参数异常",list);
+        return new ResponseResult( ResponseCode.PARAMETER_EXCEPTION,"参数异常",list);
     }
     /**
      * 业务层异常处理

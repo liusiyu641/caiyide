@@ -1,12 +1,14 @@
 package com.caiyide.primary.service.impl;
 
 import com.baomidou.mybatisplus.plugins.Page;
+
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.caiyide.primary.common.vo.Paging;
 import com.caiyide.primary.entity.BUser;
 import com.caiyide.primary.mapper.BUserMapper;
 import com.caiyide.primary.service.BUserService;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.caiyide.primary.web.param.BUserParam;
+import com.caiyide.primary.web.vo.ShopDetail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,13 +41,18 @@ public class BUserServiceImpl extends ServiceImpl<BUserMapper, BUser> implements
     @Override
     public Paging getPageList(BUserParam bUserParam){
         Page page = new Page<>();
-        bUserParam.convert(page);
-        page.setRecords(bUserMapper.getPageList(page,bUserParam));
-        return new Paging(page);
+        bUserParam.convert( page );
+        page.setRecords(bUserMapper.getPageList( page,bUserParam));
+        return new Paging( page );
     }
 
     @Override
     public String weiXinCodeByUserId(String weixinCode) {
-        return bUserMapper.weiXinCodeByUserId( weixinCode );
+        return bUserMapper.searchUserByweixinCode( weixinCode );
+    }
+
+    @Override
+    public ShopDetail getByuserId(String userId) {
+        return bUserMapper.getByuserId( userId );
     }
 }

@@ -1,10 +1,12 @@
 package com.caiyide.primary.service;
 
+
+import com.baomidou.mybatisplus.service.IService;
 import com.caiyide.primary.common.vo.Paging;
 import com.caiyide.primary.entity.BUser;
-import com.baomidou.mybatisplus.service.IService;
 import com.caiyide.primary.web.param.BUserParam;
-import com.caiyide.primary.web.vo.UpdateUserVo;
+import com.caiyide.primary.web.vo.ShopDetail;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -21,5 +23,7 @@ public interface BUserService extends IService<BUser> {
     Paging getPageList(BUserParam bUserParam);
 
     String weiXinCodeByUserId(String weixinCode);
+
+    ShopDetail getByuserId(@Param("singleParma") String singleParma);
 
 }

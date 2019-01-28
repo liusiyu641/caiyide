@@ -5,10 +5,10 @@ import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
-import com.caiyide.primary.common.entity.BaseEntity;
 
 import java.io.Serializable;
 
+import com.caiyide.primary.common.entity.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -34,12 +34,6 @@ public class BCollection extends BaseEntity {
 	@TableId(value="collect_id", type= IdType.AUTO)
 	private Integer collectId;
     /**
-     * 商品id
-     */
-	@ApiModelProperty("商品id")
-	@TableField("product_id")
-	private String productId;
-    /**
      * 用户ID
      */
 	@ApiModelProperty("用户ID")
@@ -58,14 +52,6 @@ public class BCollection extends BaseEntity {
 
 	public void setCollectId(Integer collectId) {
 		this.collectId = collectId;
-	}
-
-	public String getProductId() {
-		return productId;
-	}
-
-	public void setProductId(String productId) {
-		this.productId = productId;
 	}
 
 	public String getUserId() {

@@ -6,7 +6,9 @@ import com.caiyide.primary.common.web.controller.BaseController;
 import com.caiyide.primary.entity.BProduct;
 import com.caiyide.primary.service.BProductService;
 import com.caiyide.primary.util.IdParam;
+import com.caiyide.primary.web.param.BProductNameParam;
 import com.caiyide.primary.web.param.BProductParam;
+import com.caiyide.primary.web.vo.getByProductNameVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -70,8 +72,8 @@ public class BProductController extends BaseController {
     */
     @PostMapping("/info")
     @ApiOperation(value = "查看",notes = "查看",response = ResponseResult.class)
-    public Object getBProduct(@RequestBody IdParam idParam) throws Exception{
-        return bProductService.getById(idParam.getId());
+    public Object getBProduct(@RequestBody Integer idParam) throws Exception{
+        return bProductService.getById(idParam);
     }
 
     /**
@@ -81,5 +83,14 @@ public class BProductController extends BaseController {
     @ApiOperation(value = "获取分页列表",notes = "获取分页列表",response = BProduct.class)
     public Object getBProductPageList(@RequestBody(required = false) BProductParam bProductParam) throws Exception{
         return bProductService.getPageList(bProductParam);
+    }
+
+    /**
+     * 搜索产品
+     */
+    @PostMapping("/getByProductName")
+    @ApiOperation(value = "搜索产品",notes = "搜索产品",response = getByProductNameVo.class)
+    public Object getByProductName(@RequestBody(required = false) BProductNameParam bProductNameParam) throws Exception{
+        return bProductService.getByProductName(bProductNameParam);
     }
 }

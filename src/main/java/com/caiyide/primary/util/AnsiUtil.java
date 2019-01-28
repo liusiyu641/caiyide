@@ -1,5 +1,6 @@
 package com.caiyide.primary.util;
 
+
 import com.caiyide.primary.common.util.SpringContextUtil;
 import org.fusesource.jansi.Ansi;
 import org.slf4j.Logger;
@@ -18,7 +19,7 @@ public class AnsiUtil {
 
     static {
         Environment environment = SpringContextUtil.getBean(Environment.class);
-        Boolean value = environment.getProperty("mms.isEnableAnsi",boolean.class);
+        Boolean value = environment.getProperty("primary.isEnableAnsi",boolean.class);
         if (value != null){
             isEnableAnsi = value;
         }

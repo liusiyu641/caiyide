@@ -58,7 +58,7 @@ public class BUser extends BaseEntity {
      * 性别
      */
 	@ApiModelProperty("性别")
-	private String sex;
+	private Integer sex;
     /**
      * 微信登录唯一标识
      */
@@ -71,6 +71,9 @@ public class BUser extends BaseEntity {
 	@ApiModelProperty("头像")
 	@TableField("head_portrait")
 	private String headPortrait;
+
+	@ApiModelProperty("店铺地址")
+	private String address;
     /**
      * 创建时间
      */
@@ -125,11 +128,11 @@ public class BUser extends BaseEntity {
 		this.userType = userType;
 	}
 
-	public String getSex() {
+	public Integer getSex() {
 		return sex;
 	}
 
-	public void setSex(String sex) {
+	public void setSex(Integer sex) {
 		this.sex = sex;
 	}
 
@@ -165,6 +168,13 @@ public class BUser extends BaseEntity {
 		this.LastloginTime = LastloginTime;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
 	@Override
 	protected Serializable pkVal() {

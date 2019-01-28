@@ -1,8 +1,9 @@
 package com.caiyide.primary.service;
 
+
+import com.baomidou.mybatisplus.service.IService;
 import com.caiyide.primary.common.vo.Paging;
 import com.caiyide.primary.entity.BCollection;
-import com.baomidou.mybatisplus.service.IService;
 import com.caiyide.primary.web.param.BCollectionParam;
 
 /**

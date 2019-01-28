@@ -1,5 +1,6 @@
 package com.caiyide.primary.util;
 
+
 import com.caiyide.primary.enums.BaseTypeStateEnum;
 import io.swagger.annotations.ApiModel;
 import org.reflections.Reflections;
@@ -24,7 +25,7 @@ public class DictUtil {
 
     static {
         try {
-            Reflections reflections = new Reflections("primary.zjxdqh.mms.enums");
+            Reflections reflections = new Reflections("com.caiyide.primary.enums");
             Set<Class<? extends BaseTypeStateEnum>> subTypes = reflections.getSubTypesOf(BaseTypeStateEnum.class);
             for (Class clazz : subTypes) {
                 Method keyMethod = clazz.getDeclaredMethod("getKey");

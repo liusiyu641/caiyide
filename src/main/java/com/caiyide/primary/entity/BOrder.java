@@ -76,7 +76,11 @@ public class BOrder extends BaseEntity {
 	@ApiModelProperty("订单创建时间")
 	@TableField("order_time")
 	private Date orderTime;
-
+	/**
+	 * 留言
+	 */
+	@ApiModelProperty("留言")
+	private String mark;
 
 	public String getOrderNo() {
 		return orderNo;
@@ -142,6 +146,13 @@ public class BOrder extends BaseEntity {
 		this.orderTime = orderTime;
 	}
 
+	public String getMark() {
+		return mark;
+	}
+
+	public void setMark(String mark) {
+		this.mark = mark;
+	}
 
 	@Override
 	protected Serializable pkVal() {

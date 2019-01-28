@@ -53,6 +53,16 @@ public class LoginUserVo {
      */
     @ApiModelProperty("头像")
     private String headPortrait;
+    /**
+     * 创建时间
+     */
+    @ApiModelProperty("创建时间")
+    private Date createTime;
+    /**
+     * 最近一次登录时间
+     */
+    @ApiModelProperty("最近一次登录时间")
+    private Date LastloginTime;
 
     public String getUserId() {
         return userId;
@@ -116,5 +126,21 @@ public class LoginUserVo {
 
     public void setHeadPortrait(String headPortrait) {
         this.headPortrait = headPortrait;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getLastloginTime() {
+        return LastloginTime;
+    }
+
+    public void setLastloginTime(Date lastloginTime) {
+        LastloginTime = lastloginTime;
     }
 }

@@ -1,18 +1,17 @@
 package com.caiyide.primary.entity;
 
-import com.baomidou.mybatisplus.enums.IdType;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
 import com.caiyide.primary.common.entity.BaseEntity;
-
-import java.io.Serializable;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+
+import java.io.Serializable;
+import java.util.Date;
 
 
 /**
@@ -45,6 +44,12 @@ public class BAdvertisement extends BaseEntity {
 	@ApiModelProperty("1-头部背景图 2-轮播图")
 	@TableField("Advert_type")
 	private Integer AdvertType;
+	/**
+	 * 状态 1-启用 2-禁用
+	 */
+	@ApiModelProperty("状态 1-启用 2-禁用")
+	@TableField("Advert_state")
+	private Integer AdvertState;
     /**
      * 创建时间
      */
@@ -75,6 +80,14 @@ public class BAdvertisement extends BaseEntity {
 
 	public void setAdvertType(Integer AdvertType) {
 		this.AdvertType = AdvertType;
+	}
+
+	public Integer getAdvertState() {
+		return AdvertState;
+	}
+
+	public void setAdvertState(Integer advertState) {
+		AdvertState = advertState;
 	}
 
 	public Date getCreateTime() {

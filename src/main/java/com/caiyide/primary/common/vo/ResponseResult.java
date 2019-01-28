@@ -1,8 +1,8 @@
 package com.caiyide.primary.common.vo;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.caiyide.primary.common.constant.ResponseCode;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -39,7 +39,7 @@ public class ResponseResult implements Serializable {
         this.code = code;
         this.msg = msg;
     }
-    public ResponseResult(Object data) {
+    public  ResponseResult(Object data) {
         this.data = data;
     }
 

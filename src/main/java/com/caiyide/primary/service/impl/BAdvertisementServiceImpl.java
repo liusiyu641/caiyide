@@ -1,18 +1,21 @@
 package com.caiyide.primary.service.impl;
 
 import com.baomidou.mybatisplus.plugins.Page;
+
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.caiyide.primary.common.vo.Paging;
 import com.caiyide.primary.entity.BAdvertisement;
 import com.caiyide.primary.mapper.BAdvertisementMapper;
 import com.caiyide.primary.service.BAdvertisementService;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.caiyide.primary.web.param.BAdvertisementParam;
+import com.caiyide.primary.web.vo.AdvertVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * <p>
@@ -37,10 +40,17 @@ public class BAdvertisementServiceImpl extends ServiceImpl<BAdvertisementMapper,
     }
 
     @Override
+    public List<AdvertVo>  getAdvert(Integer AdvertType, Integer AdvertState) {
+        List<AdvertVo> advert = bAdvertisementMapper.getAdvert(AdvertType,AdvertState);
+        return advert;
+    }
+
+    @Override
     public Paging getPageList(BAdvertisementParam bAdvertisementParam){
         Page page = new Page<>();
         bAdvertisementParam.convert(page);
         page.setRecords(bAdvertisementMapper.getPageList(page,bAdvertisementParam));
         return new Paging(page);
     }
+
 }

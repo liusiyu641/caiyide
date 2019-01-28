@@ -3,6 +3,7 @@ package com.caiyide.primary.common.web.interceptor;
 import com.alibaba.fastjson.JSON;
 import com.caiyide.primary.common.vo.ResponseResult;
 
+
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +28,7 @@ public class CrossDomainFilter implements Filter {
         httpServletResponse.setHeader("Access-Control-Allow-Methods", "*");
         httpServletResponse.setHeader("Access-Control-Allow-Headers", "*");
         httpServletResponse.setHeader("Access-Control-Request-Headers","*");
-        httpServletResponse.setHeader("Access-Control-Allow-Headers", "content-type,x-auth-token,second-pwd");
+        httpServletResponse.setHeader("Access-Control-Allow-Headers", "content-type,token,second-pwd");
         httpServletResponse.setHeader("Access-Control-Expose-Headers", "*");
 
 
