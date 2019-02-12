@@ -1,7 +1,8 @@
 package com.caiyide.primary;
 
-import com.caiyide.primary.util.AnsiUtil;
+
 import com.caiyide.primary.common.util.SpringContextUtil;
+import com.caiyide.primary.util.AnsiUtil;
 import org.fusesource.jansi.Ansi;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +28,7 @@ public class Application {
 
 		Environment environment = SpringContextUtil.getBean(Environment.class);
 		logger.info("profileActive = " + environment.getProperty("spring.profiles.active"));
-		logger.info("mms service start success...........");
+		logger.info("caryide service start success...........");
 
 		String startSuccess = " ____    __                    __        ____                                                   \n" +
 				"/\\  _`\\ /\\ \\__                /\\ \\__    /\\  _`\\                                                 \n" +
