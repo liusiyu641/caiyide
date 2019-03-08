@@ -39,6 +39,12 @@ public class BCollection extends BaseEntity {
 	@ApiModelProperty("用户ID")
 	@TableField("user_id")
 	private String userId;
+	/**
+	 * 商家ID
+	 */
+	@ApiModelProperty("商家ID")
+	@TableField("shop_id")
+	private String shopId;
     /**
      * 创建时间
      */
@@ -70,6 +76,13 @@ public class BCollection extends BaseEntity {
 		this.createtime = createtime;
 	}
 
+	public String getShopId() {
+		return shopId;
+	}
+
+	public void setShopId(String shopId) {
+		this.shopId = shopId;
+	}
 
 	@Override
 	protected Serializable pkVal() {

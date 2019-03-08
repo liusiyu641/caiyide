@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 
 import com.caiyide.primary.entity.BUser;
 import com.caiyide.primary.web.param.BUserParam;
+import com.caiyide.primary.web.vo.UserInfoVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -21,7 +22,7 @@ import java.util.List;
 @Repository
 public interface BUserMapper extends BaseMapper<BUser> {
 
-    BUser getById(String id);
+    UserInfoVo getById(String id);
 
     List<com.caiyide.primary.web.vo.getUserPageListVo> getPageList(Page page, BUserParam bUserParam);
 

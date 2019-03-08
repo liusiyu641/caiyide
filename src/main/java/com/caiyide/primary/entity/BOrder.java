@@ -52,22 +52,22 @@ public class BOrder extends BaseEntity {
 	@ApiModelProperty("商品数量")
 	@TableField("product_sum")
 	private Integer productSum;
-    /**
-     * 订单总重量
-     */
-	@ApiModelProperty("订单总重量")
-	@TableField("order_total")
-	private Integer orderTotal;
+//    /**
+//     * 订单总重量
+//     */
+//	@ApiModelProperty("订单总重量")
+//	@TableField("order_total")
+//	private Integer orderTotal;
     /**
      * 总价格
      */
 	@ApiModelProperty("总价格")
 	@TableField("product_All_price")
-	private BigDecimal productAllPrice;
+	private Float productAllPrice;
     /**
-     * 订单状态 --1失效  0-待确认  1-已完成
+     * 订单状态 --1失效  0-全部  1-待确认 2 -已完成
      */
-	@ApiModelProperty("订单状态 --1失效  0-待确认  1-已完成")
+	@ApiModelProperty("订单状态 --1失效  0-全部  1-待确认 2 -已完成")
 	@TableField("order_type")
 	private Integer orderType;
     /**
@@ -76,11 +76,6 @@ public class BOrder extends BaseEntity {
 	@ApiModelProperty("订单创建时间")
 	@TableField("order_time")
 	private Date orderTime;
-	/**
-	 * 留言
-	 */
-	@ApiModelProperty("留言")
-	private String mark;
 
 	public String getOrderNo() {
 		return orderNo;
@@ -114,19 +109,19 @@ public class BOrder extends BaseEntity {
 		this.productSum = productSum;
 	}
 
-	public Integer getOrderTotal() {
-		return orderTotal;
-	}
+//	public Integer getOrderTotal() {
+//		return orderTotal;
+//	}
+//
+//	public void setOrderTotal(Integer orderTotal) {
+//		this.orderTotal = orderTotal;
+//	}
 
-	public void setOrderTotal(Integer orderTotal) {
-		this.orderTotal = orderTotal;
-	}
-
-	public BigDecimal getProductAllPrice() {
+	public Float getProductAllPrice() {
 		return productAllPrice;
 	}
 
-	public void setProductAllPrice(BigDecimal productAllPrice) {
+	public void setProductAllPrice(Float productAllPrice) {
 		this.productAllPrice = productAllPrice;
 	}
 
@@ -144,14 +139,6 @@ public class BOrder extends BaseEntity {
 
 	public void setOrderTime(Date orderTime) {
 		this.orderTime = orderTime;
-	}
-
-	public String getMark() {
-		return mark;
-	}
-
-	public void setMark(String mark) {
-		this.mark = mark;
 	}
 
 	@Override

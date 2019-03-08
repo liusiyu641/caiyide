@@ -29,7 +29,7 @@ public interface CommonConstant {
     /**
      * 购物车key
      */
-    String Shopping_Car ="shopping_car:";
+    String Shopping_Car ="CSESSIONID";
     /**
      * 管理员角色名称
      */
@@ -41,10 +41,18 @@ public interface CommonConstant {
      * APPID
      * Account Sid
      * Auth Token
-     * 模板ID
      */
     String  APPID="5ae5a57d3d6a4d0bb767c708f8000d5f";
     String Account_Sid ="a5daf992b114f4f4739bfc1d9237b64a";
     String Auth_Token="a2d0a0833fb160ebed51b786260c1e7d";
+    /**
+     * 验证码
+     */
     String templateid="421191";
+    /**
+     * 订单通知
+     */
+    String templatemessage="422253";
+
+
 }

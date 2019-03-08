@@ -5,9 +5,12 @@ package com.caiyide.primary.web.controller;
 import com.caiyide.primary.common.vo.ResponseResult;
 import com.caiyide.primary.common.web.controller.BaseController;
 import com.caiyide.primary.entity.BCollection;
+import com.caiyide.primary.mapper.BCollectionMapper;
 import com.caiyide.primary.service.BCollectionService;
 import com.caiyide.primary.util.IdParam;
+import com.caiyide.primary.util.LoginUtil;
 import com.caiyide.primary.web.param.BCollectionParam;
+import com.caiyide.primary.web.param.CollectParam;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -41,9 +44,8 @@ public class BCollectionController extends BaseController {
     */
     @PostMapping("/add")
     @ApiOperation(value = "添加",notes = "添加",response = ResponseResult.class)
-    public Object addBCollection(@RequestBody BCollection bCollection) throws Exception{
-        boolean flag = bCollectionService.insert(bCollection);
-        return ResponseResult.handle(flag);
+    public Object addBCollection(@RequestBody CollectParam collectParam) throws Exception{//获取用户id
+       return bCollectionService.addcollect(collectParam);
     }
 
     /**
@@ -62,8 +64,7 @@ public class BCollectionController extends BaseController {
     @PostMapping("/delete")
     @ApiOperation(value = "删除",notes = "删除",response = ResponseResult.class)
     public Object deleteBCollection(@RequestBody IdParam idParam) throws Exception{
-        boolean flag = bCollectionService.deleteById(idParam.getId());
-        return ResponseResult.handle(flag);
+        return  bCollectionService.deleteById( idParam.getId() );
     }
 
     /**

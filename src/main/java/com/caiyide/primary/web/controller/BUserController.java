@@ -7,6 +7,7 @@ import com.caiyide.primary.common.web.controller.BaseController;
 import com.caiyide.primary.entity.BUser;
 import com.caiyide.primary.service.BUserService;
 import com.caiyide.primary.util.IdParam;
+import com.caiyide.primary.util.LoginUtil;
 import com.caiyide.primary.util.UUIDUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -71,8 +72,9 @@ public class BUserController extends BaseController {
     */
     @PostMapping("/info")
     @ApiOperation(value = "查看",notes = "查看",response = ResponseResult.class)
-    public Object getBUser(@RequestBody IdParam idParam) throws Exception{
-        return bUserService.getById(idParam.getId());
+    public Object getBUser() throws Exception{
+        String id = LoginUtil.getLoginSysUser().getUserId();
+        return bUserService.getById(id);
     }
 
 

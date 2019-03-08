@@ -9,6 +9,7 @@ import com.caiyide.primary.mapper.BUserMapper;
 import com.caiyide.primary.service.BUserService;
 import com.caiyide.primary.web.param.BUserParam;
 import com.caiyide.primary.web.vo.ShopDetail;
+import com.caiyide.primary.web.vo.UserInfoVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class BUserServiceImpl extends ServiceImpl<BUserMapper, BUser> implements
     private BUserMapper bUserMapper;
 
     @Override
-    public BUser getById(String id){
+    public UserInfoVo getById(String id){
         return bUserMapper.getById(id);
     }
 

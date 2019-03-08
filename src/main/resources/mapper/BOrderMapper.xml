@@ -4,7 +4,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        order_no AS orderNo, user_id AS userId, product_id AS productId, product_sum AS productSum, order_total AS orderTotal, product_All_price AS productAllPrice, order_type AS orderType, order_time AS orderTime,mark
+        order_no AS orderNo, user_id AS userId, product_id AS productId, product_sum AS productSum, order_total AS orderTotal, product_All_price AS productAllPrice, order_type AS orderType, order_time AS orderTime
     </sql>
 
     <select id="getById" resultType="com.caiyide.primary.entity.BOrder">
@@ -15,7 +15,20 @@
         select <include refid="Base_Column_List"/> from b_order
     </select>
     <insert id="createOrder"  parameterType="com.caiyide.primary.entity.BOrder">
-        insert into b_order (order_no , user_id , product_id , product_sum , order_total , product_All_price , order_type , order_time,mark)
-        value (#{orderNo},#{userId},#{productId},#{productSum},#{orderTotal},#{productAllPrice},#{orderType},#{orderTime},#{mark})
+        insert into b_order (order_no , user_id , product_id , product_sum ,product_All_price,order_time)
+        value (#{orderNo},#{userId},#{productId},#{productSum},#{productAllPrice},#{orderTime})
     </insert>
+
+    <select id="selectByProductName" resultType="java.lang.String">
+        select  b_product.product_name as productName from  b_order
+        LEFT JOIN b_product on b_product.product_id =b_order.product_id
+        where order_no=#{orderNo}
+    </select>
+    <select id="selectByPhone" resultType="java.lang.String">
+      SELECT phone FROM b_user a
+      LEFT JOIN b_product b on b.product_creater= a.user_id
+      LEFT JOIN b_order c on c.product_id =b.product_id
+      WHERE
+      c.order_no =#{orderNo}
+    </select>
 </mapper>

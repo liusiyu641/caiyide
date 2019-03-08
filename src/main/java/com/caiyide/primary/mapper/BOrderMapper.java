@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 
 import com.caiyide.primary.entity.BOrder;
 import com.caiyide.primary.web.param.BOrderParam;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -26,4 +27,7 @@ public interface BOrderMapper extends BaseMapper<BOrder> {
 
     void createOrder(BOrder bOrder);
 
+    List<String> selectByProductName(@Param("orderNo") String orderNo);
+
+    List<String>selectByPhone(@Param("orderNo") String orderNo);
 }

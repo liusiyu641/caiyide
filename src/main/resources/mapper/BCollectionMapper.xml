@@ -4,15 +4,33 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        collect_id AS collectId, product_id AS productId, user_id AS userId, createtime
+        collect_id AS collectId, user_id AS userId, createtime,shop_id AS shopId
     </sql>
 
     <select id="getById" resultType="com.caiyide.primary.entity.BCollection">
-        select <include refid="Base_Column_List"/> from b_collection where collect_id = #{id}
+        select <include refid="Base_Column_List"/> from b_collection where  shop_id= #{id}
     </select>
+    <delete id="deleteById">
+        delete from b_collection where shop_id = #{id}
+    </delete>
 
-    <select id="getPageList" resultType="com.caiyide.primary.entity.BCollection">
-        select <include refid="Base_Column_List"/> from b_collection
+    <select id="getPageList" resultType="com.caiyide.primary.web.vo.CollectionVo">
+        select
+        b.user_id AS userId,
+        b.user_name AS userName ,
+        b.phone,
+        b.head_portrait AS headPortrait,
+        b.address AS address,
+        b.user_type AS userType
+        from b_collection a
+        left join  b_user b on b.user_id =a.shop_id
+        where
+        a.user_id =#{userId}
     </select>
-
+    <select id="selectByproductId" resultType="com.caiyide.primary.entity.BCollection">
+      select  * from  b_collection where  user_id =#{userId} and shop_id =#{shopId}
+    </select>
+    <insert id="addcollect" parameterType="com.caiyide.primary.web.param.CollectParam">
+        insert  into  b_collection (shop_id,user_id,collect_id,createtime) value (#{shopId},#{userId},#{collectId},Now())
+    </insert>
 </mapper>

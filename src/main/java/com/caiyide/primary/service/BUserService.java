@@ -6,6 +6,7 @@ import com.caiyide.primary.common.vo.Paging;
 import com.caiyide.primary.entity.BUser;
 import com.caiyide.primary.web.param.BUserParam;
 import com.caiyide.primary.web.vo.ShopDetail;
+import com.caiyide.primary.web.vo.UserInfoVo;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -18,7 +19,7 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface BUserService extends IService<BUser> {
 
-    BUser getById(String id);
+    UserInfoVo getById(String id);
 
     Paging getPageList(BUserParam bUserParam);
 

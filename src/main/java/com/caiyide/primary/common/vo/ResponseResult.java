@@ -92,8 +92,9 @@ public class ResponseResult implements Serializable {
         return data;
     }
 
-    public void setData(Object data) {
+    public ResponseResult setData(Object data) {
         this.data = data;
+        return null;
     }
 
     public Date getTime() {

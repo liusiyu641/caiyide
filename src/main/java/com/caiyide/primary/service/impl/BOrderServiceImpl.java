@@ -56,27 +56,24 @@ public class BOrderServiceImpl extends ServiceImpl<BOrderMapper, BOrder> impleme
     @Override
     public ResponseResult createOrder(BOrder bOrder) {
         //获取产品数量
-        BProduct bProduct = bProductMapper.getById( bOrder.getProductId() );
-        if (bProduct == null) {
-            ResponseResult.error( "没有该商品！" );
-        }
-        Integer productSum = bProduct.getProductTotal();
+//        BProduct bProduct = bProductMapper.getById( bOrder.getProductId() );
+//        if (bProduct == null) {
+//            ResponseResult.error( "没有该商品！" );
+//        }
+//        Integer productSum = bProduct.getProductTotal();
         //判断库存是否足够
-        if (productSum < bOrder.getProductSum()) {
-            return ResponseResult.error( "商品库存不足" );
-        }
-
+//        if (productSum < bOrder.getProductSum()) {
+//            return ResponseResult.error( "商品库存不足" );
+//        }
         BOrder orderparam = new BOrder();
-
         orderparam.setOrderNo( OrderUtil.random() );
         orderparam.setOrderTime( new Date() );
-        orderparam.setOrderTotal( bOrder.getOrderTotal() );
         orderparam.setOrderType( bOrder.getOrderType() );
         orderparam.setProductAllPrice( bOrder.getProductAllPrice() );
         orderparam.setProductId( bOrder.getProductId() );
         orderparam.setProductSum( bOrder.getProductSum() );
         orderparam.setUserId( bOrder.getUserId() );
-        bOrderMapper.createOrder( bOrder );
+        bOrderMapper.createOrder( orderparam );
         return ResponseResult.success( "添加成功" );
     }
 }

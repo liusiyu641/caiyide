@@ -5,6 +5,9 @@ import com.baomidou.mybatisplus.plugins.Page;
 
 import com.caiyide.primary.entity.BCollection;
 import com.caiyide.primary.web.param.BCollectionParam;
+import com.caiyide.primary.web.param.CollectParam;
+import com.caiyide.primary.web.vo.CollectionVo;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,6 +25,11 @@ public interface BCollectionMapper extends BaseMapper<BCollection> {
 
     BCollection getById(String id);
 
-    List<BCollection> getPageList(Page page, BCollectionParam bCollectionParam);
+    List<CollectionVo> getPageList(Page page, BCollectionParam bCollectionParam, @Param("userId") String userId);
 
+    BCollection  selectByproductId(@Param("userId") String userId ,@Param("shopId") String shopId);
+
+    void addcollect(CollectParam collectParam);
+
+    void deleteById(@Param("id") String id);
 }

@@ -51,11 +51,11 @@ public class BProduct extends BaseEntity {
      */
 	@ApiModelProperty("商品单价")
 	@TableField("product_price")
-	private double productPrice;
+	private Float productPrice;
     /**
      * 商品总量
      */
-	@ApiModelProperty("商品总量")
+	@ApiModelProperty("商品数量")
 	@TableField("product_total")
 	private Integer productTotal;
     /**
@@ -80,7 +80,7 @@ public class BProduct extends BaseEntity {
 		super();
 	}
 
-	public BProduct(Integer productId, String productName, String productImage, double productPrice, Integer productTotal, Integer productType, String productCreater, Date createTime) {
+	public BProduct(Integer productId, String productName, String productImage, Float productPrice, Integer productTotal, Integer productType, String productCreater, Date createTime) {
 		this.productId = productId;
 		this.productName = productName;
 		this.productImage = productImage;
@@ -105,10 +105,12 @@ public class BProduct extends BaseEntity {
 				'}';
 	}
 
+    public Integer getProductId(String l) {
+        return productId;
+    }
 	public Integer getProductId() {
 		return productId;
 	}
-
 	public void setProductId(Integer productId) {
 		this.productId = productId;
 	}
@@ -129,11 +131,11 @@ public class BProduct extends BaseEntity {
 		this.productImage = productImage;
 	}
 
-	public double getProductPrice() {
+	public Float getProductPrice() {
 		return productPrice;
 	}
 
-	public void setProductPrice(double productPrice) {
+	public void setProductPrice(Float productPrice) {
 		this.productPrice = productPrice;
 	}
 
@@ -176,13 +178,4 @@ public class BProduct extends BaseEntity {
 	}
 
 
-	@Override
-	public boolean equals(Object obj) {
-		BProduct ob= (BProduct) obj;
-		if(ob.getProductId()== this.productId){
-			return true;
-		}else{
-			return false;
-		}
-	}
 }

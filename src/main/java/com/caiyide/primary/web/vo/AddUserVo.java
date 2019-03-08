@@ -2,6 +2,7 @@ package com.caiyide.primary.web.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.hibernate.validator.constraints.NotBlank;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -21,6 +22,7 @@ public class AddUserVo  implements Serializable {
      * 微信登录唯一标识
      */
     @ApiModelProperty("微信登录唯一标识")
+    @NotBlank(message = "微信登录唯一标识")
     private String weixinCode;
     /**
      * 创建时间

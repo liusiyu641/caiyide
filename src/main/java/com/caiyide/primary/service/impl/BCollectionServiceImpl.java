@@ -4,10 +4,13 @@ import com.baomidou.mybatisplus.plugins.Page;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.caiyide.primary.common.vo.Paging;
+import com.caiyide.primary.common.vo.ResponseResult;
 import com.caiyide.primary.entity.BCollection;
 import com.caiyide.primary.mapper.BCollectionMapper;
 import com.caiyide.primary.service.BCollectionService;
+import com.caiyide.primary.util.LoginUtil;
 import com.caiyide.primary.web.param.BCollectionParam;
+import com.caiyide.primary.web.param.CollectParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +41,34 @@ public class BCollectionServiceImpl extends ServiceImpl<BCollectionMapper, BColl
     }
 
     @Override
+    public ResponseResult addcollect(CollectParam collectParam) {
+        String userId = LoginUtil.getLoginSysUser().getUserId();
+        collectParam.setUserId( userId );
+        //商家id
+        String shopId= collectParam.getShopId();
+        if (shopId==null){
+            return ResponseResult.error( "请选择商家" );
+        }
+        BCollection bCollection = bCollectionMapper.selectByproductId(userId,shopId);
+        if (bCollection==null) {
+            bCollectionMapper.addcollect( collectParam );
+            return ResponseResult.success( "收藏成功" );
+        }
+        return ResponseResult.error( "该商家已收藏" );
+    }
+
+    @Override
     public Paging getPageList(BCollectionParam bCollectionParam){
+        String userId = LoginUtil.getLoginSysUser().getUserId();
         Page page = new Page<>();
         bCollectionParam.convert(page);
-        page.setRecords(bCollectionMapper.getPageList(page,bCollectionParam));
+        page.setRecords(bCollectionMapper.getPageList(page,bCollectionParam,userId));
         return new Paging(page);
+    }
+
+    @Override
+    public ResponseResult deleteById(String id) {
+        bCollectionMapper.deleteById( id );
+        return ResponseResult.success("删除成功！");
     }
 }

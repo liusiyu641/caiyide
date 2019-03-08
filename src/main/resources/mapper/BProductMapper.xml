@@ -22,9 +22,9 @@
         from b_product where
         product_creater=#{productCreater}
     </select>
-    <update id="ChangeInventory" parameterType="com.caiyide.primary.web.vo.ProductUpVo">
-        update b_product set  product_total = #{productTotal} where product_id = #{productId}
-    </update>
+    <!--<update id="ChangeInventory" parameterType="com.caiyide.primary.web.vo.ProductUpVo">-->
+        <!--update b_product set  product_total = #{productTotal} where product_id = #{productId}-->
+    <!--</update>-->
     <!--查询前两条数据-->
     <select id="productList" resultType="com.caiyide.primary.entity.BProduct">
         select <include refid="Base_Column_List"/> from  b_product where product_creater=#{productCreater} limit 3

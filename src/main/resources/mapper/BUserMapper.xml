@@ -7,9 +7,13 @@
         user_id AS userId, user_name AS userName, phone, password, user_type AS userType, sex, weixin_code AS weixinCode, head_portrait AS headPortrait, address, create_time AS createTime, Lastlogin_time AS LastloginTime
     </sql>
 
-    <select id="getById" resultType="com.caiyide.primary.entity.BUser">
-        select <include refid="Base_Column_List"/> from b_user where user_id = #{id}
+    <select id="getById" resultType="com.caiyide.primary.web.vo.UserInfoVo">
+        select
+         user_id AS userId, user_name AS userName, phone, user_type AS userType, sex, head_portrait AS headPortrait
+         from b_user
+        where user_id = #{id}
     </select>
+
     <select id="getByweiXinCode" parameterType="java.lang.String" resultType="com.caiyide.primary.entity.BUser">
         select <include refid="Base_Column_List"/> from b_user where weixin_code =#{weixinCode}
     </select>
