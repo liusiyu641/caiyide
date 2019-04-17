@@ -47,6 +47,7 @@ public class WeChatLogin extends ActionSupport {
     //获取凭证校检接口
     public ResponseResult login(String code)
     {
+        System.out.println( "code = " + code );
         //微信的接口
         String url = "https://api.weixin.qq.com/sns/jscode2session?appid="+APPID+
                 "&secret="+SECRET+"&js_code="+ code +"&grant_type=authorization_code";
@@ -66,52 +67,55 @@ public class WeChatLogin extends ActionSupport {
             //获取会话秘钥
             String session_key = weChatSession.getSession_key();
 
+
             if (openid==null) {
                 return  ResponseResult.error( "没有获取到openid" );
             }
             System.out.println( "openid = " + openid );
+            return new ResponseResult("获取到openid"+openid);
+
             //查询是否存在用户
-            LoginUserVo loginUserVo =new LoginUserVo();
-
-            BUser bUser= bUserMapper.getByweiXinCode( openid );
-            // 将sysUser的属性复制到loginSysUserVo对象中
-            if (bUser!=null) {
-                BeanUtils.copyProperties( bUser, loginUserVo );
-            }
-            if (bUser==null){
-                AddUserVo addUserVo =new AddUserVo();
-                addUserVo.setWeixinCode( openid );
-                addUserVo.setUserId( UUIDUtil.getUUID());
-                bUserMapper.addUserByweixin( addUserVo );
-                //存入redis
-                String firstLoginRestPwdToken = TokenUtil.generateFirstLoginRestPwdToken();
-                Map<String,Object> map = new HashMap<>();
-                map.put( CommonConstant.X_AUTH_TOKEN,firstLoginRestPwdToken);
-                redisTemplate.opsForValue().set(firstLoginRestPwdToken, loginUserVo,10,TimeUnit.MINUTES);
-                return new ResponseResult( ResponseCode.NOT_INFO_PERFECT,"第一次登录，请选择商家或者批发商",map);
-            }
-
-            String UserId = loginUserVo.getUserId();
-            // 保存的登录对象
-            // 生成token
-            String xAuthToken = TokenUtil.generateXAuthToken();
-            redisTemplate.opsForValue().set(xAuthToken, loginUserVo, LoginUtil.TOKEN_VALID_TIME_MINUTE,TimeUnit.MINUTES);
-
-            // 修改用户最后一次登录的时间
-            bUserMapper.updateLastLoginDate(UserId);
-
-
-
-            // 输出token和登录对象
-            Map<String,Object> map = new HashMap<>();
-            map.put(CommonConstant.X_AUTH_TOKEN,xAuthToken);
-            map.put(CommonConstant.LOGIN_SYS_USER, loginUserVo);
-
-            ResponseResult responseResult = new ResponseResult();
-            responseResult.setCode(200);
-            responseResult.setMsg("登录成功");
-            responseResult.setData(map);
-            return responseResult;
+//            LoginUserVo loginUserVo =new LoginUserVo();
+//
+//            BUser bUser= bUserMapper.getByweiXinCode( openid );
+//            // 将sysUser的属性复制到loginSysUserVo对象中
+//            if (bUser!=null) {
+//                BeanUtils.copyProperties( bUser, loginUserVo );
+//            }
+//            if (bUser==null){
+//                AddUserVo addUserVo =new AddUserVo();
+//                addUserVo.setWeixinCode( openid );
+//                addUserVo.setUserId( UUIDUtil.getUUID());
+//                bUserMapper.addUserByweixin( addUserVo );
+//                //存入redis
+//                String firstLoginRestPwdToken = TokenUtil.generateFirstLoginRestPwdToken();
+//                Map<String,Object> map = new HashMap<>();
+//                map.put( CommonConstant.X_AUTH_TOKEN,firstLoginRestPwdToken);
+//                redisTemplate.opsForValue().set(firstLoginRestPwdToken, loginUserVo,10,TimeUnit.MINUTES);
+//                return new ResponseResult( ResponseCode.NOT_INFO_PERFECT,"第一次登录，请选择商家或者批发商",map);
+//            }
+//
+//            String UserId = loginUserVo.getUserId();
+//            // 保存的登录对象
+//            // 生成token
+//            String xAuthToken = TokenUtil.generateXAuthToken();
+//            redisTemplate.opsForValue().set(xAuthToken, loginUserVo, LoginUtil.TOKEN_VALID_TIME_MINUTE,TimeUnit.MINUTES);
+//
+//            // 修改用户最后一次登录的时间
+//            bUserMapper.updateLastLoginDate(UserId);
+//
+//
+//
+//            // 输出token和登录对象
+//            Map<String,Object> map = new HashMap<>();
+//            map.put(CommonConstant.X_AUTH_TOKEN,xAuthToken);
+//            map.put(CommonConstant.LOGIN_SYS_USER, loginUserVo);
+//
+//            ResponseResult responseResult = new ResponseResult();
+//            responseResult.setCode(200);
+//            responseResult.setMsg("登录成功");
+//            responseResult.setData(map);
+//            return responseResult;
         }
         return null;
     }

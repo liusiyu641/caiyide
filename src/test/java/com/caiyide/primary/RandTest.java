@@ -1,7 +1,7 @@
 package com.caiyide.primary;
 
 
-import com.caiyide.primary.web.vo.ShopCarVo;
+import com.caiyide.primary.util.SplicingCharacterUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,20 +33,5 @@ public class RandTest {
 ////        totalpowerjishu1.setScale( 5,BigDecimal.ROUND_HALF_UP );
 ////       System.out.println("测试-----------------------------------------------" + totalpowerjishu1);
 //    }
-    public static void main(String[] args) {
-        System.out.println( "小弱鸡" );
-        List<ShopCarVo>shop=new ArrayList<>(  );
-        ShopCarVo vo=new ShopCarVo();
-        vo.setUserId( "123" );
-        shop.add( vo );
-        ShopCarVo vo2=new ShopCarVo();
-        vo2.setUserId( "124" );
-        shop.add( vo2 );
-
-        ShopCarVo vo3=new ShopCarVo();
-        vo3.setUserId( "123" );
-
-        System.out.println( shop.contains(vo3) );
-   }
 
 }

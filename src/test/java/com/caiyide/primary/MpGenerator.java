@@ -31,14 +31,14 @@ public class MpGenerator {
         String password = "Admin123.";
         String url = "jdbc:mysql://47.106.244.65:3306/caibao?characterEncoding=utf8";
         // 项目路径
-        String projectUrl = "C:\\Users\\Hello\\Desktop\\caiyide\\";
+        String projectUrl = "D:\\github\\caiyide\\";
         String author = "liusiyu";
 
         /**
          * user_car, user_creditcard, user_enterprise, user_house, user_insurance, user_land
          */
         // 生成的表名称
-        String[] tableNames = new String[] {"b_advertisement","b_collection","b_order","b_product","b_shopping_car"};
+        String[] tableNames = new String[] {"b_order_details"};
 
         AutoGenerator mpg = new AutoGenerator();
 
@@ -85,7 +85,7 @@ public class MpGenerator {
         // strategy.setCapitalMode(true);// 全局大写命名 ORACLE 注意
         strategy.setTablePrefix(new String[] { "tlog_", "tsys_" });// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
-         strategy.setInclude(tableNames); // 需要生成的表
+        strategy.setInclude(tableNames); // 需要生成的表
         // strategy.setExclude(new String[]{"test"}); // 排除生成的表
         // 自定义实体父类
          strategy.setSuperEntityClass("BaseEntity");

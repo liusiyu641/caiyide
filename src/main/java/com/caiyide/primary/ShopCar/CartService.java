@@ -16,6 +16,7 @@ import java.util.Set;
  * @create 2019-02-12-16:39
  */
 @Service
+@SuppressWarnings( "ALL" )
 public class CartService {
     @Autowired
     private RedisTemplate redisTemplate;
